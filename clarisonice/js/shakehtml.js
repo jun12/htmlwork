@@ -1,7 +1,7 @@
 /**
  * @author wjsu
  */
- var isDebug	= true;
+ var isDebug	= false;
 var Index = {
 	init:function () {
 		var hash = window.location.hash.split("#")[1];
@@ -14,30 +14,37 @@ var Index = {
 		}
 		$("#shake").append('<img  src=images/'+index+".gif"+' width="100%" />');
 		window.addEventListener('shake', Index.ernie, false);
+		
+		var shakesoudn = document.getElementById("shakesound");
+   			shakesound.autoplay="'autoplay'";
+   			document.all.shakesound.src= '../images/shake_sound.mp3';
 	},
 	/*
 	*摇奖
 	*/
 	ernie:function () {
 		//alert("摇一摇");
+		shakesoudn.onload = function () {
+		}
 		if(isDebug) {
 			Index.getErnieStatus();
 		} else {
-			$.getJSON('reg.ashx?username='+username+'&createdate='+new Date(),
+			$.getJSON('prize.ashx',
 	        function(remoteData){
-	        console.log(remoteData);
-	    });
+	        	Index.getErnieStatus(remoteData);
+
+	    	});
 		}
 	},
-	getErnieStatus:function () {
-		var type = "1";
-		var tips = gen_random(1,7);
-		var code = "code3";
+	getErnieStatus:function (obj) {
+		var type = obj.type;
 		if(type == "1") {
 			$("body").addClass('shakeBody');
-			$("#shake").html('<div class="tips"><img  src=images/tips'+tips+'.gif width="100%" /></div>');
+			$("#shake").html('<div class="tips"><img  src=images/tips'+obj.code+'.gif width="100%" /></div>');
 		} else {
-			$("#shake").load('info.html #'+code,function(){
+			var codeIndex = pareInt(obj.type)+1;
+			$("#shake").load('info.html #code'+codeIndex,function(){
+				$(".codetxt"+codeIndex).text(obj.code);
 			});
 		}
 	}
