@@ -1,7 +1,7 @@
 /**
  * @author wjsu
  */
-var path = "chioce.html?u=";
+var path = "http://clarisonic.wangfan.com/chioce.html?u=";
  var isDebug	= false;
 var Index = {
 	init:function () {
@@ -16,7 +16,7 @@ var Index = {
 			},
 			blur:function (){
 				if($("#username").val() == "") {
-					$("#username").val("请输入您的名字");
+					$("#username").val("请输入您的真实姓名");
 				}
 			}
 		});
@@ -33,8 +33,8 @@ var Index = {
 	},
 	getStatus:function () {
 		var username = $("#username").val();
-		if(username == "" || username == "请输入您的名字") {
-			alert("请输入您的名字");
+		if(username == "" || username == "请输入您的真实姓名") {
+			alert("请输入您的真实姓名");
 		} else {
 			if(isDebug) {
 				Index.generateCode(username);
@@ -53,7 +53,7 @@ var Index = {
 	*/
 	generateCode:function (username) {
 		$("#url").empty();
-		var urlPath = path + decToHex(username).replace(/\\/g,"")+Date.parse(new Date());
+		var urlPath = path + decToHex(username);
 		$("#url").append('<a href='+urlPath+'>'+urlPath+'</a>');
 	}
 }
@@ -69,10 +69,6 @@ var decToHex = function(str) {
   for(var i=0;i < str.length;i++)
       res[i]=("00"+str.charCodeAt(i).toString(16)).slice(-4);
   return "\\u"+res.join("\\u");
-}
-var hexToDec = function(str) {
-  str=str.replace(/\\/g,"%");
-  return unescape(str);
 }
 
 Date.prototype.Format = function (fmt) { //author: meizz 

@@ -25,9 +25,10 @@ body.shareBody{background:url(../images/shareBody.jpg) no-repeat top center;back
 .chiocetit{width:290px;height:55px;margin:34px auto auto auto;clear:both;}
 .chioceword{width:290px;margin:16px auto auto auto;clear:both;}
 .photoes{width:290px;margin:25px auto auto auto;clear:both;}
+.photoes img{height:94px;float:left;margin:0px auto auto 0px;}
 .photoes a{display:block;width:67px;height:94px;float:left;margin:7px auto auto 7px;}
 .photoes a:nth-child(1){margin-left:0px;}
-.photoes a:nth-child(5){margin-left:0px;}
+.photoes a:nth-child(4){margin-left:0px;}
 
 #shake{width:290px;margin:18px auto 18px auto;clear:both;}
 .tips{width:290px;margin:auto;padding-top:20px;}

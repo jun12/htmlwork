@@ -3,15 +3,15 @@
  */
 document.addEventListener('WeixinJSBridgeReady', 
  	function onBridgeReady() {
- 		window.shareData = {"imgUrl": "http://anna.wangfan.com/jun/clarisonice/images/1.gif", 
- 												"timeLineLink": "http://anna.wangfan.com/jun/clarisonice?uid={$uid}",
- 												"sendFriendLink": "http://anna.wangfan.com/jun/clarisonice?uid={$uid}",
- 												"weiboLink": "http://anna.wangfan.com/jun/clarisonice",           
- 												"tTitle": "xvxcvzxvc",
- 												"tContent": "xzcvzxvczxc",
- 												"fTitle": "zxcvzxcvzxcv",
- 												"fContent": "zxcvzxcv",
- 												"wContent": "zxvczxcvzxcv"
+ 		window.shareData = {"imgUrl": "http://clarisonic.wangfan.com//images/1.jpg", 
+ 												"timeLineLink": window.location.href,
+ 												"sendFriendLink": "http://clarisonic.wangfan.com/",
+ 												"weiboLink": "http://clarisonic.wangfan.com/",           
+ 												"tTitle": "我刚刚参加了一个世界上最准的性格测试，太神奇了！",
+ 												"tContent": "我刚刚参加了一个世界上最准的性格测试，太神奇了！",
+ 												"fTitle": "我刚刚参加了一个世界上最准的性格测试，太神奇了！",
+ 												"fContent": "我刚刚参加了一个世界上最准的性格测试，太神奇了！",
+ 												"wContent": "我刚刚参加了一个世界上最准的性格测试，太神奇了！"
  												};          
  		// 发送给好友
  		WeixinJSBridge.on('menu:share:appmessage',
@@ -24,6 +24,9 @@ document.addEventListener('WeixinJSBridgeReady',
  				}, function (res) { _report('send_msg', res.err_msg);})});           
  				// 分享到朋友圈          
  				WeixinJSBridge.on('menu:share:timeline', function (argv) {
+ 					if(window.shareData.timeLineLink.indexOf("chioce.html") == -1) {
+ 						window.shareData.timeLineLink = "http://clarisonic.wangfan.com/chioce.html";
+ 					}
  				WeixinJSBridge.invoke('shareTimeline', {
  				"img_url": window.shareData.imgUrl,
  				"img_width": "640",
